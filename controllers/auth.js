@@ -1,23 +1,45 @@
+const {
+  usergame
+} = require('../models')
+
+const passport = require('../lib/passport')
+
 login = (req, res) => {
-    res.send('login')
-  }
+  res.render('login')
+}
 
-logposh =  (req, res) => {
-    res.send('ini login post')
-  }
-
-register =  (req, res) => {
-    res.send('ini register')
-  }
+logposh = ('/login',passport.authenticate('local', {
+  successRedirect: '/dasboard',
+  failureRedirect: '/register',
+  failureFlash: true // Untuk mengaktifkan express flash
+ }))
+register = (req, res) => {
+  res.render('register')
+}
 
 regpost = (req, res) => {
-    res.send('ini register post')
-  }
+
+  const {username,password} = req.body
+
+ //res.send(`${username},${password}`)
+
+  usergame.register(req.body)
+    .then(() => {
+      res.redirect('/login')
+    })
+    .catch(err => {
+      console.log(err)
+      next(err);
+    })
+
+}
+
+
 
 
 module.exports = {
-    login,
-    logposh,
-    register,
-    regpost
+  login,
+  logposh,
+  register,
+  regpost
 }
