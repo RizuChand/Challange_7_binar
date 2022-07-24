@@ -2,26 +2,23 @@ const {
   usergame
 } = require('../models')
 
-const passport = require('../lib/passport')
 
-login = (req, res) => {
+ 
+function login  (req, res) {
   res.render('login')
 }
 
-logposh = ('/login',passport.authenticate('local', {
-  successRedirect: '/dasboard',
-  failureRedirect: '/register',
-  failureFlash: true // Untuk mengaktifkan express flash
- }))
-register = (req, res) => {
+
+function register  (req, res)  {
   res.render('register')
 }
 
-regpost = (req, res) => {
+function regpost (req, res) {
 
-  const {username,password} = req.body
+  //cek data masuk di form
 
- //res.send(`${username},${password}`)
+//  const {username,password} = req.body
+//  console.log(`${username},${password}`)
 
   usergame.register(req.body)
     .then(() => {
@@ -32,6 +29,18 @@ regpost = (req, res) => {
       next(err);
     })
 
+        // debug isi tanpa enkripsi
+  // const {username, password} = req.body;
+  //   usergame.create({
+  //       username,
+  //       password,
+  //       superUser : false
+  //   }).then(user => {
+  //       console.log({user});
+  //       // redirect to view login
+  //       res.redirect("/login")
+  //   })
+
 }
 
 
@@ -39,7 +48,6 @@ regpost = (req, res) => {
 
 module.exports = {
   login,
-  logposh,
   register,
   regpost
 }
