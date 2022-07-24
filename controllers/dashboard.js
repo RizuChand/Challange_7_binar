@@ -1,5 +1,5 @@
-dashboard = (req, res) => {
-    res.send('protected endpoint')
+function dashboard (req, res) {
+    res.render('dashboard')
   }
 
 

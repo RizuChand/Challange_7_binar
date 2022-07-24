@@ -14,7 +14,7 @@ routes.get('/', )
 routes.get('/login',login)
 
 routes.post('/login',passport.authenticate('local', {
-    successRedirect: '/dasboard',
+    successRedirect: '/dashboard',
     failureRedirect: '/register',
     failureFlash: true // Untuk mengaktifkan express flash
    }))
