@@ -25,5 +25,10 @@ routes.post('/register',regpost)
 
 routes.get('/dashboard',restrict,dashboard )
 
+routes.get('/whoami', restrict, (req, res) => {
+    const {username} = req.user.dataValues
+    res.send(`my name is ${username}`)
+})
+
 
 module.exports = routes;

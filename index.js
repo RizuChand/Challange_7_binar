@@ -21,16 +21,13 @@ app.use(flash())
 //modul export
 const routers = require('./routers/index')
 
-
-
-
-
-
 app.set('view engine', 'ejs');
 
 
 
 app.use(routers);
+
+
 
 
 

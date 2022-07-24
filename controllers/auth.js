@@ -44,8 +44,6 @@ function regpost (req, res) {
 }
 
 
-
-
 module.exports = {
   login,
   register,
